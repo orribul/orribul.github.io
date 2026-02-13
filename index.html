@@ -326,6 +326,11 @@
             transform: scale(1.05);
         }
 
+        /* Scroll fix: account for sticky header height */
+        [id] {
+            scroll-margin-top: 90px;   /* Adjust this if needed (header height + small buffer) */
+        }
+
         /* Mobile-first adjustments */
         @media (min-width: 480px) {
             .main-content { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -476,7 +481,7 @@
             localStorage.setItem('theme', next);
         });
 
-        // Dropdown logic (unchanged)
+        // Dropdown logic
         const dropdownBtn = document.getElementById('dropdownBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
 
@@ -515,7 +520,7 @@
             }).catch(err => console.error('Kopiering feilet:', err));
         }
 
-        // Price fetcher (unchanged)
+        // Price fetcher
         const btcPriceEl = document.getElementById('btcPrice');
         const lastUpdateEl = document.getElementById('lastUpdate');
         let currentBTCPrice = null;
@@ -539,7 +544,7 @@
         fetchBitcoinPrice();
         setInterval(fetchBitcoinPrice, 60000);
 
-        // Calculator logic (unchanged)
+        // Calculator
         const netIncomeInput = document.getElementById('netIncome');
         const slider = document.getElementById('fractionSlider');
         const fractionDisplay = document.getElementById('fractionDisplay');
