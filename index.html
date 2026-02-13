@@ -28,9 +28,7 @@
             --light-bg: #2a2a2a;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             background: var(--bg);
@@ -161,17 +159,9 @@
             margin: 2rem 0;
         }
 
-        @media (min-width: 600px) {
-            .results-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (min-width: 900px) {
-            .results-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-
-        @media (min-width: 1200px) {
-            .results-grid { grid-template-columns: repeat(6, 1fr); }
-        }
+        @media (min-width: 600px) { .results-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 900px) { .results-grid { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1200px) { .results-grid { grid-template-columns: repeat(6, 1fr); } }
 
         .result-card {
             background: var(--light-bg);
@@ -223,6 +213,7 @@
             border-radius: 6px;
             -webkit-appearance: none;
             margin: 1.2rem 0;
+            touch-action: pan-x;
         }
 
         input[type="range"]::-webkit-slider-thumb {
@@ -326,9 +317,9 @@
             transform: scale(1.05);
         }
 
-        /* Scroll fix: account for sticky header height */
+        /* Scroll fix for sticky header */
         [id] {
-            scroll-margin-top: 90px;   /* Adjust this if needed (header height + small buffer) */
+            scroll-margin-top: 90px;
         }
 
         /* Mobile-first adjustments */
@@ -364,7 +355,7 @@
                     <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png" alt="Meny" class="bitcoin-logo-header">
                 </button>
                 <div class="dropdown-menu" id="dropdownMenu">
-                    <a href="#intro" class="dropdown-item">Introduksjon</a>
+                    <a href="#intro" class="dropdown-item">Velkommen / Bitcoin-veien</a>
                     <a href="#price" class="dropdown-item">Aktuell Bitcoin-pris</a>
                     <a href="#planner" class="dropdown-item">Investeringsplanlegger</a>
                     <a href="#invite" class="dropdown-item">Min invitasjonskode</a>
@@ -403,7 +394,14 @@
             <input type="number" id="netIncome" placeholder="f.eks. 60000" step="any">
 
             <label for="fractionSlider">Andel til investering: <span id="fractionDisplay">1/2</span></label>
-            <input type="range" id="fractionSlider" min="2" max="12" step="1" value="2">
+            <input 
+                type="range" 
+                id="fractionSlider" 
+                min="2" max="12" step="1" value="2"
+                readonly
+                inputmode="none"
+                ontouchstart="this.focus(); this.blur();"
+            >
 
             <div class="results-grid">
                 <div class="result-card">
